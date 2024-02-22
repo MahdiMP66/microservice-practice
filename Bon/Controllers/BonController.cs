@@ -40,8 +40,74 @@ namespace BonAPI.Controllers
         {
             try
             {
-                var bon = _db.Bons.FirstOrDefault(x => x.Id == id);
+                var bon = _db.Bons.First(x => x.Id == id);
                 _response.Data = _mapper.Map<BonDTO>(bon);
+            }
+            catch (Exception ex)
+            {
+                _response.Success = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
+        }
+        [HttpGet]
+        [Route("GetByCode/{code:int}")]
+        public ApiResponse GetByCode(int code)
+        {
+            try
+            {
+                var bon = _db.Bons.First(x => x.Code == code);
+                _response.Data = _mapper.Map<BonDTO>(bon);
+            }
+            catch (Exception ex)
+            {
+                _response.Success = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
+        }
+        [HttpPost]
+        public ApiResponse AddBon([FromBody] BonDTO bonDTO)
+        {
+            try
+            {
+                Bon bon = _mapper.Map<Bon>(bonDTO);
+                _db.Bons.Add(bon);
+                _db.SaveChanges();
+                _response.Data = _mapper.Map<BonDTO>(bon);
+            }
+            catch (Exception ex)
+            {
+                _response.Success = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
+        }
+        [HttpPut]
+        public ApiResponse UpdateBon([FromBody] BonDTO bonDTO)
+        {
+            try
+            {
+                Bon bon = _mapper.Map<Bon>(bonDTO);
+                _db.Bons.Update(bon);
+                _db.SaveChanges();
+                _response.Data = _mapper.Map<BonDTO>(bon);
+            }
+            catch (Exception ex)
+            {
+                _response.Success = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
+        }
+        [HttpDelete]
+        public ApiResponse DeleteBon(int id)
+        {
+            try
+            {
+                var bon = _db.Bons.First(x => x.Id == id);
+                _db.Bons.Remove(bon);
+                _db.SaveChanges();
             }
             catch (Exception ex)
             {

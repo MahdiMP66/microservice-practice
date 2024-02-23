@@ -25,5 +25,20 @@ namespace Mic.Web.Controllers
             }
             return View(bonDTOs);
         }
+        public async Task<IActionResult> BonCreate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> BonCreate(BonDTO bonDTO)
+        {
+            ResponseDTO? response = await _bonService.AddAsync(bonDTO);
+            if(response != null && response.Success) 
+            { 
+                return RedirectToAction(nameof(BonIndex));
+            }
+            return View(bonDTO);
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace Mic.Web.Services
                 message.RequestUri = new Uri(requestDTO.ApiUrl);
                 if (requestDTO.Data != null)
                 {
-                    message.Content = new StringContent(JsonConvert.SerializeObject(requestDTO)
+                    message.Content = new StringContent(JsonConvert.SerializeObject(requestDTO.Data)
                         , Encoding.UTF8, "application/json");
                 }
                 HttpResponseMessage? apiResponse = null;

@@ -13,15 +13,15 @@ namespace BonAPI.Controllers
     {
         private readonly DataContext _db;
         private readonly IMapper _mapper;
-        private ApiResponse _response;
+        private ResponseDTO _response;
         public BonController(DataContext db,IMapper mapper)
         {
             _db = db;
             _mapper = mapper;
-            _response = new ApiResponse();
+            _response = new ResponseDTO();
         }
         [HttpGet]
-        public ApiResponse GetAll() {
+        public ResponseDTO GetAll() {
             try
             {
                 IEnumerable<Bon> bons = _db.Bons.Select(x => x).ToList();
@@ -36,7 +36,7 @@ namespace BonAPI.Controllers
         }
         [HttpGet]
         [Route("{id:int}")]
-        public ApiResponse GetAll(int id)
+        public ResponseDTO GetAll(int id)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace BonAPI.Controllers
         }
         [HttpGet]
         [Route("GetByCode/{code:int}")]
-        public ApiResponse GetByCode(int code)
+        public ResponseDTO GetByCode(int code)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace BonAPI.Controllers
             return _response;
         }
         [HttpPost]
-        public ApiResponse AddBon([FromBody] BonDTO bonDTO)
+        public ResponseDTO AddBon([FromBody] BonDTO bonDTO)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace BonAPI.Controllers
             return _response;
         }
         [HttpPut]
-        public ApiResponse UpdateBon([FromBody] BonDTO bonDTO)
+        public ResponseDTO UpdateBon([FromBody] BonDTO bonDTO)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace BonAPI.Controllers
             return _response;
         }
         [HttpDelete]
-        public ApiResponse DeleteBon(int id)
+        public ResponseDTO DeleteBon(int id)
         {
             try
             {

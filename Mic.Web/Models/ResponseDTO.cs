@@ -1,8 +1,6 @@
-﻿using Azure;
-
-namespace BonAPI.Models
+﻿namespace Mic.Web.Models
 {
-    public class ApiResponse 
+    public class ResponseDTO
     {
         public object? Data { get; set; }
         public bool Success { get; set; } = true;

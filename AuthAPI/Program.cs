@@ -1,5 +1,7 @@
 using AuthAPI.Data;
 using AuthAPI.Models;
+using AuthAPI.Services;
+using AuthAPI.Services.IService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +18,7 @@ builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(build
     .GetConnectionString("DefaultConnection")));
 builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<DataContext>().AddDefaultTokenProviders();
+builder.Services.AddScoped<IAuthService, AuthService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

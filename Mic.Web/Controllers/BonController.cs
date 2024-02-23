@@ -40,5 +40,29 @@ namespace Mic.Web.Controllers
             }
             return View(bonDTO);
         }
+
+        public async Task<IActionResult> BonDelete(int bonId)
+        {
+            ResponseDTO response = await _bonService.GetSingleAsync(bonId);
+            if( response != null && response.Success)
+            { 
+                BonDTO bon = JsonConvert.DeserializeObject<BonDTO>(Convert
+                    .ToString(response.Data));
+                return View(bon);
+            }
+            return NotFound();
+            
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> BonDelete(BonDTO bonDTO)
+        {
+            ResponseDTO? responseDTO = await _bonService.RemoveAsync(bonDTO.Id);
+            if( responseDTO != null && responseDTO.Success)
+            {
+                return RedirectToAction(nameof(BonIndex));
+            }
+            return View(bonDTO);
+        }
     }
 }

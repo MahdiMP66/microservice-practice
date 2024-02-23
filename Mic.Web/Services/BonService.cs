@@ -38,7 +38,7 @@ namespace Mic.Web.Services
             return await _baseService.SendAsync(new RequestDTO
             {
                 apiMethod = Statics.ApiMethod.GET,
-                ApiUrl = Statics.BonApiBaseURL + "/api/bon" + code
+                ApiUrl = Statics.BonApiBaseURL + "/api/bon/" + code
             });
         }
 
@@ -47,7 +47,7 @@ namespace Mic.Web.Services
             return await _baseService.SendAsync(new RequestDTO
             {
                 apiMethod = Statics.ApiMethod.GET,
-                ApiUrl = Statics.BonApiBaseURL + "/api/bon" + id
+                ApiUrl = Statics.BonApiBaseURL + "/api/bon/" + id
             });
         }
 
@@ -56,7 +56,7 @@ namespace Mic.Web.Services
             return await _baseService.SendAsync(new RequestDTO
             {
                 apiMethod = Statics.ApiMethod.DELETE,
-                ApiUrl = Statics.BonApiBaseURL + "/api/bon"
+                ApiUrl = Statics.BonApiBaseURL + "/api/bon/" +id
             });
         }
 

@@ -36,7 +36,7 @@ namespace BonAPI.Controllers
         }
         [HttpGet]
         [Route("{id:int}")]
-        public ResponseDTO GetAll(int id)
+        public ResponseDTO GetSingle(int id)
         {
             try
             {
@@ -101,6 +101,7 @@ namespace BonAPI.Controllers
             return _response;
         }
         [HttpDelete]
+        [Route("{id:int}")]
         public ResponseDTO DeleteBon(int id)
         {
             try

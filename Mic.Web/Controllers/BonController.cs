@@ -35,7 +35,8 @@ namespace Mic.Web.Controllers
         {
             ResponseDTO? response = await _bonService.AddAsync(bonDTO);
             if(response != null && response.Success) 
-            { 
+            {
+                TempData["success"] = "bon created!";
                 return RedirectToAction(nameof(BonIndex));
             }
             return View(bonDTO);
@@ -48,6 +49,7 @@ namespace Mic.Web.Controllers
             { 
                 BonDTO bon = JsonConvert.DeserializeObject<BonDTO>(Convert
                     .ToString(response.Data));
+                
                 return View(bon);
             }
             return NotFound();
@@ -60,6 +62,7 @@ namespace Mic.Web.Controllers
             ResponseDTO? responseDTO = await _bonService.RemoveAsync(bonDTO.Id);
             if( responseDTO != null && responseDTO.Success)
             {
+                TempData["success"] = "bon deleted!";
                 return RedirectToAction(nameof(BonIndex));
             }
             return View(bonDTO);

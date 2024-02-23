@@ -1,7 +1,19 @@
+using Mic.Web.Services;
+using Mic.Web.Services.IService;
+using Mic.Web.Utility;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddHttpClient();
+builder.Services.AddHttpClient<IBonService, BonService>();
+Statics.BonApiBaseURL = builder.Configuration["ServicesUrls:BonAPI"];
+builder.Services.AddScoped<IBaseService, BaseService>();
+builder.Services.AddScoped<IBonService, BonService>();
+
+
 
 var app = builder.Build();
 

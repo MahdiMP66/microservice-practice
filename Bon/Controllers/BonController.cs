@@ -2,7 +2,6 @@
 using BonAPI.Data;
 using BonAPI.Models;
 using BonAPI.Models.DTOs;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BonAPI.Controllers
@@ -14,20 +13,21 @@ namespace BonAPI.Controllers
         private readonly DataContext _db;
         private readonly IMapper _mapper;
         private ResponseDTO _response;
-        public BonController(DataContext db,IMapper mapper)
+        public BonController(DataContext db, IMapper mapper)
         {
             _db = db;
             _mapper = mapper;
             _response = new ResponseDTO();
         }
         [HttpGet]
-        public ResponseDTO GetAll() {
+        public ResponseDTO GetAll()
+        {
             try
             {
                 IEnumerable<Bon> bons = _db.Bons.Select(x => x).ToList();
                 _response.Data = _mapper.Map<IEnumerable<BonDTO>>(bons);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _response.Success = false;
                 _response.Message = ex.Message;

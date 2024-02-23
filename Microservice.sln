@@ -13,7 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{63
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BonAPI", "Bon\BonAPI.csproj", "{8CC4A7F2-F4C1-4919-A1BF-10E44882820E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mic.Web", "Mic.Web\Mic.Web.csproj", "{DB02A9AB-7A41-485E-BE72-448ABF84F09F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mic.Web", "Mic.Web\Mic.Web.csproj", "{DB02A9AB-7A41-485E-BE72-448ABF84F09F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthAPI", "AuthAPI\AuthAPI.csproj", "{EE391317-BC8E-4D41-BCAA-157FF54D0EB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{DB02A9AB-7A41-485E-BE72-448ABF84F09F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB02A9AB-7A41-485E-BE72-448ABF84F09F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB02A9AB-7A41-485E-BE72-448ABF84F09F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE391317-BC8E-4D41-BCAA-157FF54D0EB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE391317-BC8E-4D41-BCAA-157FF54D0EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE391317-BC8E-4D41-BCAA-157FF54D0EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE391317-BC8E-4D41-BCAA-157FF54D0EB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8CC4A7F2-F4C1-4919-A1BF-10E44882820E} = {633EC92C-107A-405D-A36A-FF266A3BF9F9}
 		{DB02A9AB-7A41-485E-BE72-448ABF84F09F} = {5D9792FE-C015-4AA2-A084-AC0AB50D2DFC}
+		{EE391317-BC8E-4D41-BCAA-157FF54D0EB6} = {633EC92C-107A-405D-A36A-FF266A3BF9F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {255798F9-803E-4540-861E-6EC5ACF640F7}

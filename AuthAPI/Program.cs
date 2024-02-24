@@ -16,7 +16,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSettings:JwtOptions"));
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(builder.Configuration
     .GetConnectionString("DefaultConnection")));
-builder.Services.AddIdentity<AppUser, IdentityRole>()
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
+{   options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase= false;
+    options.Password.RequireLowercase= false;
+    options.Password.RequireDigit= false;
+    options.Password.RequiredLength = 4;
+})
     .AddEntityFrameworkStores<DataContext>().AddDefaultTokenProviders();
 builder.Services.AddScoped<IAuthService, AuthService>();
 var app = builder.Build();

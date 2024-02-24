@@ -22,9 +22,10 @@ namespace AuthAPI.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterRequestDTO requestDTO)
         {
             var message = await _authService.Register(requestDTO);
-            if(message.Username == null)
+            if(!string.IsNullOrEmpty(message))
             {
-                return BadRequest("error creating user!"); // if any conditions fail, this error will be encounterd(not good approach)
+                _response.Success = false;
+                _response.Message = message;
             }
             return Ok(_response);
         }

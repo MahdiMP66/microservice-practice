@@ -2,6 +2,7 @@
 using AuthAPI.Models;
 using AuthAPI.Models.DTOs;
 using AuthAPI.Services.IService;
+using AuthAPI.Utility;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 
@@ -20,18 +21,21 @@ namespace AuthAPI.Services
             _userManager = userManager;
         }
 
-        public async Task<UserDTO> Register(RegisterRequestDTO requestDTO)
+        public async Task<string> Register(RegisterRequestDTO requestDTO)
         {
             var user = new AppUser()
             {
                 Email = requestDTO.Email,
                 NormalizedEmail = requestDTO.Email.ToUpper(),
                 Name = requestDTO.Name,
-                UserName = requestDTO.Email
+                UserName = requestDTO.Email,
+                PhoneNumber = requestDTO.PhoneNumber
             };
 
             try
             {
+                if (!Statics.IsValidEmail(requestDTO.Email))
+                    return "Invalid Email format";
                 var result = await _userManager.CreateAsync(user, requestDTO.Password);
                 if (result.Succeeded)
                 {
@@ -43,18 +47,18 @@ namespace AuthAPI.Services
                         Id = dbUser.Id,
                         PhoneNumber = dbUser.PhoneNumber
                     };
-                    return userDTO;
+                    return "";
                 }
                 else
                 {
-                    return new UserDTO();
+                    return result.Errors.First().Description;
                 }
             }
             catch (Exception ex)
             {
-
+                return ex.Message;
             }
-            return new UserDTO();
+            
         }
 
 

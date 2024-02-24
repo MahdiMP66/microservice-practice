@@ -13,12 +13,15 @@ namespace AuthAPI.Services
         private readonly DataContext _db;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IJwtService _jwtService;
 
-        public AuthService(DataContext db,RoleManager<IdentityRole> roleManager,UserManager<AppUser> userManager)
+        public AuthService(DataContext db,RoleManager<IdentityRole> roleManager
+            ,UserManager<AppUser> userManager, IJwtService jwtService)
         {
             _db = db;
             _roleManager = roleManager;
             _userManager = userManager;
+            _jwtService = jwtService;
         }
 
         public async Task<string> Register(RegisterRequestDTO requestDTO)
@@ -77,7 +80,7 @@ namespace AuthAPI.Services
                 Email=user.Email,
                 PhoneNumber = user.PhoneNumber
             };
-            return new() { Token="", User=userDTO };
+            return new() { Token=_jwtService.GenerateToken(user), User=userDTO };
         }
 
     }

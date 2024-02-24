@@ -12,11 +12,13 @@ namespace AuthAPI.Controllers
         
         private ResponseDTO _response;
         private readonly IAuthService _authService;
+        
 
         public AuthController(IAuthService authService)
         {
             _response = new ResponseDTO();
             _authService = authService;
+           
         }
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDTO requestDTO)

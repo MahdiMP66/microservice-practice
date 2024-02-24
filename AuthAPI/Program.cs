@@ -25,6 +25,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 })
     .AddEntityFrameworkStores<DataContext>().AddDefaultTokenProviders();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IJwtService,JwtService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

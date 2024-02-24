@@ -28,6 +28,7 @@ namespace AuthAPI.Controllers
             {
                 _response.Success = false;
                 _response.Message = message;
+                return BadRequest(_response);
             }
             return Ok(_response);
         }
@@ -38,9 +39,23 @@ namespace AuthAPI.Controllers
             if(loginResponse.User == null)
             {
                 _response.Success = false;
-                _response.Message = "user or pass incorrect"; 
+                _response.Message = "user or pass incorrect";
+                return BadRequest(_response);
             }
             _response.Data = loginResponse;
+
+            return Ok(_response);
+        }
+        [HttpPost("GiveRole")]
+        public async Task<IActionResult> GiveRole([FromBody] RegisterRequestDTO requestDTO)
+        {
+            bool roleResponse = await _authService.GiveRole(requestDTO.Email, requestDTO.Role.ToUpper());
+            if (!roleResponse)
+            {
+                _response.Success = false;
+                _response.Message = "error";
+                return BadRequest(_response);
+            }
 
             return Ok(_response);
         }

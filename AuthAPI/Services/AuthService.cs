@@ -83,5 +83,19 @@ namespace AuthAPI.Services
             return new() { Token=_jwtService.GenerateToken(user), User=userDTO };
         }
 
+        public async Task<bool> GiveRole(string email, string role)
+        {
+            var user = _db.Users.FirstOrDefault(u => u.Email == email);
+            if(user != null)
+            {
+                if (!_roleManager.RoleExistsAsync(role).GetAwaiter().GetResult())
+                {
+                    await _roleManager.CreateAsync(new IdentityRole(role)); 
+                }
+                await _userManager.AddToRoleAsync(user, role);
+                return true;
+            }
+            return false;
+        }
     }
 }

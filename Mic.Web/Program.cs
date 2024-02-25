@@ -9,9 +9,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddHttpClient();
 builder.Services.AddHttpClient<IBonService, BonService>();
+builder.Services.AddHttpClient<IAuthService, AuthService>();
 Statics.BonApiBaseURL = builder.Configuration["ServicesUrls:BonAPI"];
+Statics.AuthApiBaseURL = builder.Configuration["ServicesUrls:AuthAPI"];
 builder.Services.AddScoped<IBaseService, BaseService>();
 builder.Services.AddScoped<IBonService, BonService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 
 

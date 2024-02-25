@@ -3,6 +3,7 @@ using Mic.Web.Services.IService;
 using Mic.Web.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 
 namespace Mic.Web.Controllers
 {
@@ -57,9 +58,28 @@ namespace Mic.Web.Controllers
 
 
         [HttpGet]
-        public IActionResult Login(LoginRequestDTO requestDTO)
+        public IActionResult Login()
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginRequestDTO requestDTO)
+        {
+            ResponseDTO response = await _authService.Login(requestDTO);
+
+            if (response != null && response.Success)
+            {
+                LoginResponseDTO responseDTO = JsonConvert.DeserializeObject<LoginResponseDTO>(Convert.ToString(response.Data));
+                TempData["success"] = "Logged in Successfully";
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("error", response.Message);
+                return View(requestDTO);
+            }
+        }
+
     }
 }

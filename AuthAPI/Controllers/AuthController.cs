@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AuthAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -21,6 +21,7 @@ namespace AuthAPI.Controllers
            
         }
         [HttpPost("register")]
+        
         public async Task<IActionResult> Register([FromBody] RegisterRequestDTO requestDTO)
         {
             var message = await _authService.Register(requestDTO);

@@ -55,6 +55,8 @@ namespace Mic.Web.Services
                         return new() { Success = false, Message = "Access denied" };
                     case HttpStatusCode.InternalServerError:
                         return new() { Success = false, Message = "Server error" };
+                    case HttpStatusCode.BadRequest:
+                        return new() { Success = false, Message = "Server error" };
                     default:
                         var apiContent = await apiResponse.Content.ReadAsStringAsync();
                         var responseDto = JsonConvert.DeserializeObject<ResponseDTO>(apiContent);

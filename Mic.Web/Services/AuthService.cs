@@ -19,7 +19,7 @@ namespace Mic.Web.Services
             return await _baseService.SendAsync(new RequestDTO()
             {
                 apiMethod = Statics.ApiMethod.POST,
-                ApiUrl = Statics.AuthApiBaseURL + "api/auth/GiveRole",
+                ApiUrl = Statics.AuthApiBaseURL + "/api/auth/GiveRole",
                 Data = request,
 
             });
@@ -30,7 +30,7 @@ namespace Mic.Web.Services
             return await _baseService.SendAsync(new RequestDTO()
             {
                 apiMethod = Statics.ApiMethod.POST,
-                ApiUrl = Statics.AuthApiBaseURL + "api/auth/login",
+                ApiUrl = Statics.AuthApiBaseURL + "/api/auth/login",
                 Data = request,
 
             });
@@ -41,7 +41,7 @@ namespace Mic.Web.Services
             return await _baseService.SendAsync(new RequestDTO()
             {
                 apiMethod = Statics.ApiMethod.POST,
-                ApiUrl = Statics.AuthApiBaseURL + "api/auth/register",
+                ApiUrl = Statics.AuthApiBaseURL + "/api/Auth/register",
                 Data = request,
 
             });
